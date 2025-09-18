@@ -124,6 +124,7 @@ VBEMHS_lm <- function(formula, data=NULL, standardize=TRUE, tau_trace=FALSE,
     res$beta <- fit$beta * (sd_y/sd_X)
     res$se_beta <- fit$se_beta * (sd_y/sd_X)
     res$sigma2 <- fit$sigma2 * sd_y^2
+    res$kappa <- fit$kappa
     colnames(res$beta) <- colnames_X
     colnames(res$se_beta) <- colnames_X
     colnames(res$kappa) <- colnames_X
