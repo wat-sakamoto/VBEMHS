@@ -9,8 +9,7 @@ Authors@R: c(
       role = c("aut", "cre")
     )
   )
-Description: Variational Bayesian EM algorithm 
-    with independent horseshoe prior.
+Description: Variational Bayesian EM algorithm with independent horseshoe prior for variable selection in sparse linear model.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

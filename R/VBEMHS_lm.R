@@ -1,4 +1,4 @@
-#' VBEM Algorithm with Horseshor Prior in Sparse Linear Model
+#' VBEM Algorithm with Horseshoe Prior in Sparse Linear Model
 #'
 #' Variational Bayesian EM algorithm with (independent) horseshoe prior
 #' for variable selection in sparse linear model.
@@ -39,7 +39,7 @@
 #' @param alpha A value \eqn{\alpha} between 0 and 1 that specifies the coverage probability \eqn{1-\alpha} of the credible intervals for \eqn{\beta_j}'s.
 #' @param verbose logical. It specifies whether to display some values at each iteration.
 #'
-#' @returns If \code{tau_search=TRUE}, a list object containing the following components:
+#' @returns If \code{tau_trace=TRUE}, a list object containing the following components:
 #' \itemize{
 #'  \item \code{tau2} : a vector of \eqn{\tau^2} values used.
 #'  \item \code{beta} : a matrix of posterior mean of \eqn{\beta_j}'s. Each row corresponds to a value of \eqn{\tau^2},
@@ -51,7 +51,7 @@
 #'  \item \code{lb} : a vector of the estimated lower bound of the log posterior density (up to constant).
 #'  \item \code{iter} : a vector of the numbers of iterations.
 #' }
-#' If \code{tau_search=FALSE}, a list object containing the following components:
+#' If \code{tau_trace=FALSE}, a list object containing the following components:
 #' \itemize{
 #'  \item \code{beta} : posterior means of \eqn{\beta_j}'s.
 #'  \item \code{se_beta} : posterior standard errors of \eqn{\beta_j}'s.
@@ -68,9 +68,9 @@
 #' @examples
 #' # Diabetes data
 #' library(lars); data(diabates)
-#' diabetes.trace <- VBEMHS_lm(y ~ x, data=diabetes, tau_trace=TRUE)
 #' diabetes.lm <- VBEMHS_lm(y ~ x, data=diabetes)
-#'
+#' diabetes.trace <- VBEMHS_lm(y ~ x, data=diabetes, tau_trace=TRUE)
+
 VBEMHS_lm <- function(formula, data=NULL, standardize=TRUE, tau_trace=FALSE,
                    lt2_range=c(-6,0), lt2_step=0.5, tau2_scale=1, bc=0,
                    a=0.5, b=0.5, c_ig=0, d=0,
@@ -126,7 +126,6 @@ VBEMHS_lm <- function(formula, data=NULL, standardize=TRUE, tau_trace=FALSE,
     colnames(res$beta) <- colnames_X
     colnames(res$se_beta) <- colnames_X
     colnames(res$kappa) <- colnames_X
-#    res$eff <- p-apply(res$kappa,1,sum)
   } else {
     res$beta <- fit$beta * (sd_y/sd_X)
     res$beta0 <- as.numeric(mean_y-mean_X %*% res$beta)
@@ -136,7 +135,6 @@ VBEMHS_lm <- function(formula, data=NULL, standardize=TRUE, tau_trace=FALSE,
     res$t_stat <- res$beta/res$se_beta
     res$CI <- data.frame(lower=res$beta+qnorm(alpha/2)*res$se_beta,
                          upper=res$beta+qnorm(1-alpha/2)*res$se_beta)
-#    res$formula <- formula
     names(res$beta) <- colnames_X
     names(res$se_beta) <- colnames_X
     names(res$omega) <- colnames_X

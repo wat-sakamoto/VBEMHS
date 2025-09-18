@@ -1,4 +1,8 @@
-# Penalized least square estimate
+#' @title VBEM.reg
+#' @description Penalized least square estimate of beta
+#' @export
+#' @noRd
+
 VBEM.reg <- function(XX,Xy,prec)
 {
   XXA <- XX+diag(prec)
@@ -8,7 +12,11 @@ VBEM.reg <- function(XX,Xy,prec)
   return(list(beta=as.vector(beta), R=R))
 }
 
-# Penalized least square estimate (Sherman-Morrison-Woodbury formula)
+#' @title VBEM.reg_nltp
+#' @description Penalized least square estimate (Sherman-Morrison-Woodbury formula)
+#' @export
+#' @noRd
+
 VBEM.reg_nltp <- function(n,X,Xy,prec) # in case n is less than p
 {
   AX <- (1/prec)*t(X) # A X^t
@@ -23,7 +31,11 @@ VBEM.reg_nltp <- function(n,X,Xy,prec) # in case n is less than p
   return(list(beta=as.vector(beta), R=R))
 }
 
-# Update q(beta)
+#' @title VBEMHS_lm.beta
+#' @description Update q(beta)
+#' @export
+#' @noRd
+
 VBEMHS_lm.beta <- function(n,p,X,XX,Xy,prec)
 {
   if (n < p){
@@ -50,14 +62,22 @@ VBEMHS_lm.beta <- function(n,p,X,XX,Xy,prec)
        logdet=logdet) # (1/2)*log|XX+A|
 }
 
-# Update q(omega), omega=1/lambda^2
+#' @title VBEMHS_lm.omega
+#' @description Update q(omega), where omega=1/lambda^2
+#' @export
+#' @noRd
+
 VBEMHS_lm.omega<- function(Eb2,tau2,nu,b=0.5)
 {
   omega <- (b+0.5)/(Eb2/(2*tau2)+nu)
   return(omega)   # omega.bar=E[ 1/lambda^2 ]
 }
 
-# Compute the lower bound for log marginal posterior
+#' @title VBEMHS_lm.lb
+#' @description Compute the lower bound for log marginal posterior
+#' @export
+#' @noRd
+
 VBEMHS_lm.lb <- function(n,p,X,y,sigma2,tau2,q_beta,omega,
                       tau_log_prior,a=0.5,b=0.5,c_ig=0,d=0)
 {
@@ -77,7 +97,11 @@ VBEMHS_lm.lb <- function(n,p,X,y,sigma2,tau2,q_beta,omega,
   return(as.numeric(lb))
 }
 
-# VBEM algorithm (tau2 updated in iterations)
+#' @title VBEMHS_lm.tau2_update
+#' @description VBEM algorithm (tau2 updated in iterations)
+#' @export
+#' @noRd
+
 # "lt2" stands for log10(tau2)
 VBEMHS_lm.tau2_update <- function(X,y,
                                lt2_range=c(-6,0),lt2_step=0.5,tau_log_prior,tau2_scale=1,bc=0,
@@ -259,7 +283,11 @@ VBEMHS_lm.tau2_update <- function(X,y,
        tau2=tau2, omega=omega, kappa=omega/(omega+n*tau2/sigma2), lb=lb, iter=k)
 }
 
-# VBEM algorithm (tau2 fixed)
+#' @title VBEMHS_lm.tau2_fixed
+#' @description VBEM algorithm (tau2 fixed)
+#' @export
+#' @noRd
+
 VBEMHS_lm.tau2_fixed <- function(X,y,tau2,tau_log_prior,bc=0,
                               a=0.5,b=0.5,c_ig=0,d=0,max_iter=1000,tol=1e-6,verbose=FALSE)
 {
@@ -372,8 +400,11 @@ VBEMHS_lm.tau2_fixed <- function(X,y,tau2,tau_log_prior,bc=0,
        omega=omega, kappa=omega/(omega+n*tau2/sigma2), lb=lb, iter=k)
 }
 
+#' @title VBEMHS_lm.trace
+#' @description VBEM for a sequence of fixed values of tau
+#' @export
+#' @noRd
 
-# VBEM for several fixed values of tau
 VBEMHS_lm.trace <- function(X,y,lt2_range,lt2_step,tau_log_prior,bc=0,
                          a=0.5,b=0.5,c_ig=0,d=0,max_iter=1000,tol=1e-6,verbose=FALSE)
 {

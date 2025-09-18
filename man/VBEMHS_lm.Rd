@@ -2,7 +2,7 @@
 % Please edit documentation in R/VBEMHS_lm.R
 \name{VBEMHS_lm}
 \alias{VBEMHS_lm}
-\title{VBEM Algorithm with Horseshor Prior in Sparse Linear Model}
+\title{VBEM Algorithm with Horseshoe Prior in Sparse Linear Model}
 \usage{
 VBEMHS_lm(
   formula,
@@ -72,7 +72,7 @@ The program judges that The iterations converge when
 \item{verbose}{logical. It specifies whether to display some values at each iteration.}
 }
 \value{
-If \code{tau_search=TRUE}, a list object containing the following components:
+If \code{tau_trace=TRUE}, a list object containing the following components:
 \itemize{
 \item \code{tau2} : a vector of \eqn{\tau^2} values used.
 \item \code{beta} : a matrix of posterior mean of \eqn{\beta_j}'s. Each row corresponds to a value of \eqn{\tau^2},
@@ -84,7 +84,7 @@ Each element corresponds to a value of \eqn{\tau^2}.
 \item \code{lb} : a vector of the estimated lower bound of the log posterior density (up to constant).
 \item \code{iter} : a vector of the numbers of iterations.
 }
-If \code{tau_search=FALSE}, a list object containing the following components:
+If \code{tau_trace=FALSE}, a list object containing the following components:
 \itemize{
 \item \code{beta} : posterior means of \eqn{\beta_j}'s.
 \item \code{se_beta} : posterior standard errors of \eqn{\beta_j}'s.
@@ -106,7 +106,6 @@ No intercept term is included, so X and y are supposed to be centered.
 \examples{
 # Diabetes data
 library(lars); data(diabates)
-diabetes.trace <- VBEMHS_lm(y ~ x, data=diabetes, tau_trace=TRUE)
 diabetes.lm <- VBEMHS_lm(y ~ x, data=diabetes)
-
+diabetes.trace <- VBEMHS_lm(y ~ x, data=diabetes, tau_trace=TRUE)
 }
