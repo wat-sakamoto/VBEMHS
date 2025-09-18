@@ -67,7 +67,7 @@
 #'
 #' @examples
 #' # Diabetes data
-#' library(lars); data(diabates)
+#' library(lars); data(diabetes)
 #' diabetes.lm <- VBEMHS_lm(y ~ x, data=diabetes)
 #' diabetes.trace <- VBEMHS_lm(y ~ x, data=diabetes, tau_trace=TRUE)
 
