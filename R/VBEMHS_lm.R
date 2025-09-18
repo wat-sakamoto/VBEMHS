@@ -119,6 +119,7 @@ VBEMHS_lm <- function(formula, data=NULL, standardize=TRUE, tau_trace=FALSE,
                               a,b,c_ig,d,max_iter,tol,verbose)
   }
 
+  res <- NULL
   if (tau_trace){
     res$beta <- fit$beta * (sd_y/sd_X)
     res$se_beta <- fit$se_beta * (sd_y/sd_X)
