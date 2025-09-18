@@ -131,6 +131,8 @@ VBEMHS_lm <- function(formula, data=NULL, standardize=TRUE, tau_trace=FALSE,
     res$beta <- fit$beta * (sd_y/sd_X)
     res$beta0 <- as.numeric(mean_y-mean_X %*% res$beta)
     res$se_beta <- fit$se_beta * (sd_y/sd_X)
+    res$omega <- fit$omega
+    res$kappa <- fit$kappa
     res$V_beta <- fit$V_beta * tcrossprod(sd_y/sd_X)
     res$sigma2 <- fit$sigma2 * sd_y^2
     res$t_stat <- res$beta/res$se_beta
