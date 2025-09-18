@@ -17,20 +17,6 @@ You can install the development version of VBEMHS like so:
 ``` r
 #install.packages(devtools)
 devtools::install_github("wat-sakamoto/VBEMHS")
-#> Using GitHub PAT from the git credential store.
-#> Downloading GitHub repo wat-sakamoto/VBEMHS@HEAD
-#> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>          checking for file 'C:\Users\wat-sakamoto\AppData\Local\Temp\Rtmp0kBz9x\remotes503472e84cd7\wat-sakamoto-VBEMHS-c655d53/DESCRIPTION' ...     checking for file 'C:\Users\wat-sakamoto\AppData\Local\Temp\Rtmp0kBz9x\remotes503472e84cd7\wat-sakamoto-VBEMHS-c655d53/DESCRIPTION' ...   ✔  checking for file 'C:\Users\wat-sakamoto\AppData\Local\Temp\Rtmp0kBz9x\remotes503472e84cd7\wat-sakamoto-VBEMHS-c655d53/DESCRIPTION' (782ms)
-#>       ─  preparing 'VBEMHS':
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#>       ─  checking for LF line-endings in source and make files and shell scripts (635ms)
-#>   ─  checking for empty or unneeded directories
-#>    Omitted 'LazyData' from DESCRIPTION
-#>       ─  building 'VBEMHS_0.1.0.tar.gz'
-#>      
-#> 
-#> Installing package into 'C:/Users/wat-sakamoto/AppData/Local/R/win-library/4.5'
-#> (as 'lib' is unspecified)
 ```
 
 ## Example
@@ -40,7 +26,6 @@ This is an example of application to diabetes data in lars package:
 ``` r
 library(VBEMHS)
 library(lars); data(diabetes)
-#> Loaded lars 1.3
 diabetes.lm <- VBEMHS_lm(y ~ x, data=diabetes)
 ```
 
