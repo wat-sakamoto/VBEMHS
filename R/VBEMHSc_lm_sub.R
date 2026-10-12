@@ -4,6 +4,7 @@
 #'
 #' @noRd
 #'
+#'
 VBEMHSc_lm.lb <- function(n,p,sigma2,tau2,q_beta,omega,tr_S,s2_estim,
                           tau_log_prior,a=0.5,b=0.5,c_ig=0,d=0)
 {

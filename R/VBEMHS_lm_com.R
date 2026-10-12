@@ -4,6 +4,7 @@
 #'
 #' @noRd
 #'
+#'
 VBEMHS_lm.pls <- function(XX,Xy,prec)
 {
   XXA <- XX+diag(prec)

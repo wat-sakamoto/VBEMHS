@@ -4,6 +4,7 @@
 #'
 #' @noRd
 #'
+#'
 VBEMHS_lm.lb <- function(n,p,sigma2,tau2,q_beta,omega,Eb2,tr,s2_estim,
                          tau_log_prior,a=0.5,b=0.5,c_ig=0,d=0)
 {
@@ -22,7 +23,13 @@ VBEMHS_lm.lb <- function(n,p,sigma2,tau2,q_beta,omega,Eb2,tr,s2_estim,
   return(lb)
 }
 
-# Initial search for the global shrinkage parameter (gs=sigma2/tau2)
+#' VBEMHSc_lm.gs
+#'
+#' Initial search for the global shrinkage parameter (for conjugate prior)
+#' (gs=sigma2/tau2)
+#'
+#' @noRd
+#'
 VBEMHS_lm.gs <- function(X,y,lgs_range=c(-2,4),lgs_step=1,s2_estim="mean",s2_correct=FALSE,
                          tau2_scale=1,a=0.5,b=0.5,c_ig=0,d=0,tol=1e-6,verbose=FALSE)
 {
