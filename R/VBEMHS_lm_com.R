@@ -1,17 +1,25 @@
-### Common functions for VBEMHS_lm/VBEMHSc_lm/
-
-# Penalized least square estimate
+#' VBEMHS_lm.pls
+#'
+#' Compute penalized least square estimate of beta
+#'
+#' @noRd
+#'
 VBEMHS_lm.pls <- function(XX,Xy,prec)
 {
   XXA <- XX+diag(prec)
   R <- chol(XXA)
   beta <- backsolve(R,forwardsolve(t(R),Xy))
   # beta <- (XX+A)^{-1} Xy
-  
+
   return(list(beta=beta, R=R))
 }
 
-# Penalized least square estimate (Sherman-Morrison-Woodbury formula) 
+#' VBEMHS_lm.pls.nltp
+#'
+#' Compute penalized least square estimate of beta (Sherman-Morrison-Woodbury formula)
+#'
+#' @noRd
+#'
 VBEMHS_lm.pls.nltp <- function(n,X,Xy,prec) # in case n is less than p
 {
   AX <- (1/prec)*t(X) # A X^t
@@ -23,11 +31,16 @@ VBEMHS_lm.pls.nltp <- function(n,X,Xy,prec) # in case n is less than p
   R <- chol(IXAX)
   beta <- AXy-tcrossprod(AX,t(backsolve(R,forwardsolve(t(R),XAXy))))
   # beta <- AXy-AX (I+XAX)^{-1} XAXy
-  
+
   return(list(beta=beta, R=R))
 }
 
-# Update q(beta)
+#' VBEMHS_lm.beta
+#'
+#' Update q(beta) in VBEM algorithm
+#'
+#' @noRd
+#'
 VBEMHS_lm.beta <- function(n,p,X,XX,Xy,prec)
 {
   if (n < p){
@@ -37,7 +50,7 @@ VBEMHS_lm.beta <- function(n,p,X,XX,Xy,prec)
   }
   beta <- reg$beta
   R <- reg$R
-  logdet <- sum(log(diag(R)))  
+  logdet <- sum(log(diag(R)))
 
   if (n < p) {  # SMW formula
     logdet <- logdet + sum(log(prec))/2
@@ -47,7 +60,7 @@ VBEMHS_lm.beta <- function(n,p,X,XX,Xy,prec)
     V <- tcrossprod(backsolve(R,diag(1,p)))
   }
   var.b <- diag(V)
-  
+
   list(mean=beta,     # (XX+A)^{-1} Xy
        var=var.b,     # diag of (XX+A)^{-1}
        V=V,           # (XX+A)^{-1}
