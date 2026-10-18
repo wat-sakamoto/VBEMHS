@@ -12,11 +12,12 @@ Linear Models
 
 ## Installation
 
-You can install the development version of VBEMHS like so:
+You can install the development version of VBEMHS from
+[GitHub](https://github.com/) with:
 
 ``` r
-#install.packages(pak)
-pak::pkg_install("wat-sakamoto/VBEMHS")
+# install.packages("pak")
+pak::pak("wat-sakamoto/VBEMHS")
 ```
 
 ## Example
@@ -68,6 +69,6 @@ summary(cars)
 ```
 &#10;You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
 &#10;You can also embed plots, for example:
-&#10;<img src="man/figures/README-pressure-1.png" alt="" width="100%" />
+&#10;<img src="README_files/figure-gfm/pressure-1.png" alt="" width="100%" />
 &#10;In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
 -->
