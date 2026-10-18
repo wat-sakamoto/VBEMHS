@@ -283,7 +283,6 @@ VBEMHS_lm <- function(formula, data=NULL, standardize=TRUE,
 #' which corresponds to the two-sided p-value \eqn{2(1-\mbox{pd})} for the frequentist methods.}
 #' \item{star}{character symbols that shows whether each coefficient is significant. <br>
 #' *** : pd>0.9995, &emsp; ** : pd>0.995, &emsp; * : pd>0.975, &emsp; . : pd>0.95.}
-#' }
 #'
 #' @seealso [VBEMHS_lm].
 #' @examples

@@ -25,7 +25,6 @@ which corresponds to the two-sided p-value \eqn{2(1-\mbox{pd})} for the frequent
 \item{star}{character symbols that shows whether each coefficient is significant. \if{html}{\out{<br>}}
 *** : pd>0.9995,   ** : pd>0.995,   * : pd>0.975,   . : pd>0.95.}
 }
-}
 \description{
 Output useful for variable selection and inference in Bayesian sparse linear models.
 }
